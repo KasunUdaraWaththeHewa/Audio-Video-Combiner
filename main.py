@@ -15,7 +15,8 @@ def combine_audio_video(source_folder, output_folder):
 
     for video in video_files:
         # Match the corresponding audio file
-        base_name = video.split(" (")[0]  # Get the base name before the resolution
+        # Remove the resolution and frame rate part in parentheses
+        base_name = video.rsplit(" (", 1)[0]
         audio = f"{base_name}-audio.mp4"  # Construct the expected audio filename
         video_path = os.path.join(source_folder, video)
         audio_path = os.path.join(source_folder, audio)
